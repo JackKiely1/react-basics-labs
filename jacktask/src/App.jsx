@@ -28,6 +28,12 @@ function App() {
     setTaskState({tasks});
   } 
 
+  const [ formState, setFormState ] = useState({
+    title: "",
+    description: "",
+    deadline: ""
+  });
+  console.log(formState);
 
   return (
     <div className="container">
@@ -46,7 +52,8 @@ function App() {
      
     />
     ))}
-     <AddTaskForm /> 
+    <AddTaskForm change={formChangeHandler} />
+
     </div>
   );
 }
