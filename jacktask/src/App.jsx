@@ -2,6 +2,8 @@ import './App.css';
 import Task from './components/Task';
 import React, { useState } from 'react';
 import AddTaskForm from './components/Form';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -53,6 +55,19 @@ function App() {
     setFormState(form);
   }
 
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+
+    const tasks = [...taskState.tasks];
+    const form = {...formState};
+
+    form.id = uuidv4();
+    
+    tasks.push(form);
+    setTaskState({tasks});
+  }
+
+
   console.log(formState);
 
 
@@ -73,7 +88,8 @@ function App() {
      
     />
     ))}
-    <AddTaskForm change={formChangeHandler} />
+      <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
+
 
     </div>
   );
